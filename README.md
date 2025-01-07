@@ -15,6 +15,9 @@ Using the VSM Deploy object, shows a list of Components, Build Ids and Dates.
 ### Rally/Insights Objects:
 - VSM Deploy
 
+### Screenshot
+![image](./build-list.png)
+
 ### External Libraries Used:
 [Grid.js](https://gridjs.io/)
 
