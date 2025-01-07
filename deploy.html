@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+    <style>
+        * {
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrapper"></div>
+    <script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
+    <script>
+        // $RallyContext:Begin
+        // $RallyContext:End
+        if ($RallyContext.ViewFilter.Type == 'Release'){
+            startDate = $RallyContext.ViewFilter.Value.ReleaseStartDate;
+            endDate = $RallyContext.ViewFilter.Value.ReleaseDate;
+        }
+        if ($RallyContext.ViewFilter.Type == 'Iteration'){
+            startDate = $RallyContext.ViewFilter.Value.StartDate;
+            endDate = $RallyContext.ViewFilter.Value.EndDate;
+        }
+        var query = '(Component.Name = "churro")';
+        if (startDate && endDate){
+            query = `((${query} AND (TimeCreated < ${endDate})) AND (TimeCreated > ${startDate}))`;
+        }
+
+        const grid = new gridjs.Grid({
+            columns: ['Component','BuildId','Date'],
+            server: {
+                url: `/slm/webservice/v2.0/vsmdeploy?start=1&pagesize=100&fetch=true&query=${query}&order=CreationDate desc`,
+                then: data => data.QueryResult.Results.map(deploy => {
+                    return [deploy.Component._refObjectName, deploy.BuildId, deploy.CreationDate]
+                })
+            }
+        }).render(document.getElementById("wrapper"));
+    </script>
+</body>
+
+</html>
