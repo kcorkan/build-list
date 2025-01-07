@@ -3,7 +3,7 @@
 Example HTML Widget code showing how to create a list of Builds for a particular Component
 Using the VSM Deploy object, shows a list of Components, Build Ids and Dates.   
 
-**Supported Scopes:**  
+### Supported Scopes:  
 :white_check_mark: No Scope  
 :white_check_mark: Iteration  
 :white_check_mark: Release  
@@ -12,11 +12,11 @@ Using the VSM Deploy object, shows a list of Components, Build Ids and Dates.
 :x: Project  
 :x: Portfolio Item  
 
-**Rally/Insights Objects:**
+### Rally/Insights Objects:
 - VSM Deploy
 
-**External Libraries Used:**
+### External Libraries Used:
 [Grid.js](https://gridjs.io/)
 
-**Caveats:** 
-The query is currently hardcoded in line 27.  Add an input box or update the hardcoded query for specific needs.  
+### Caveats: 
+- The query is currently hardcoded in line 27.  Add an input box or update the hardcoded query for specific needs.  
